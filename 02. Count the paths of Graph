@@ -1,0 +1,29 @@
+
+
+
+class Solution
+{
+    int count=0;
+    public void dfs(int s,int d,ArrayList<ArrayList<Integer>> al){
+        if(s==d){
+            count++;
+            return;
+        }
+        
+        for(int i:al.get(s))
+        dfs(i,d,al);
+    }
+    public int possible_paths(int[][] edges, int n, int s, int d)
+    {
+        // Code here
+        ArrayList<ArrayList<Integer>> al=new ArrayList<ArrayList<Integer>>();
+        for(int i=0;i<n;i++)
+        al.add(new ArrayList<Integer>());
+        
+        for(int i=0;i<edges.length;i++)
+            al.get(edges[i][0]).add(edges[i][1]);
+        
+        dfs(s,d,al);
+        return count;
+    }
+}
